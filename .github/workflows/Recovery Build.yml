@@ -121,7 +121,18 @@ jobs:
       uses: pierotofy/set-swap-space@master
       with:
         swap-size-gb: 16
-
+        
+    - name: Enable zram swap
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y zram-tools
+        echo -e 'ALGO=lz4\nPERCENT=50\nPRIORITY=100' | sudo tee /etc/default/zramswap
+        sudo systemctl restart zramswap.service
+        echo "== swap layout =="
+        swapon --show
+        free -h
+      working-directory: ${{ steps.pwd.outputs.workspace-folder }}
+      
     - name: Building recovery
       run: |
         cd ${{ steps.pwd.outputs.workspace-folder }}/fox_${{ github.event.inputs.MANIFEST_BRANCH }}
