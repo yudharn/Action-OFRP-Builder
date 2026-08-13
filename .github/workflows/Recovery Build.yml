@@ -1,4 +1,4 @@
-name: Recovery Build
+name: Build Recovery OrengeFox
 
 on:
   workflow_dispatch:
@@ -43,7 +43,7 @@ on:
         default: 'recovery'
 
 jobs:
-  build:
+  Build-OFRP:
     if: github.event.repository.owner.id == github.event.sender.id
     runs-on: ubuntu-24.04
     permissions:
