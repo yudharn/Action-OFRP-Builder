@@ -81,8 +81,8 @@ jobs:
     - name: Install OpenJDK
       uses: actions/setup-java@v4
       with:
-        distribution: 'zulu'
-        java-version: '11'
+        distribution: 'temurin'
+        java-version: '21'
 
     - name: Setup SSH Keys
       if: ${{ startsWith(github.event.inputs.MANIFEST_URL, 'git@github.com') || 
